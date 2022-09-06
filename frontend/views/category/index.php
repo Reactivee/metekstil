@@ -4,9 +4,7 @@
         <div class="container">
             <div class="category__banner_breadcrumb d-flex color_gray pt-5">
                 <a class="text-decoration-none color_white mr-2 " href="/">Главная</a> / <a
-                        class="text-decoration-none color_white mx-2" href="/category/all-category">Каталог</a> / Duz
-                Boya
-
+                        class="text-decoration-none color_white mx-2" href="/category/all-category">Каталог</a> / <?= $category['name_' . Yii::$app->language] ?>
             </div>
             <div class="category__banner_content text-center text-md-left">
 

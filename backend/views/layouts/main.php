@@ -5,6 +5,7 @@
  * @var \yii\web\View $this
  */
 
+use backend\widgets\AlertGrowl;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 
@@ -33,6 +34,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
 <div class="container body">
 
     <div class="main_container">
+        <?php echo AlertGrowl::widget() ?>
         <!--        --><?php //echo Breadcrumbs::widget([
         //            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         //        ]) ?>

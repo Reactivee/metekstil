@@ -80,7 +80,7 @@ class CategoryController extends Controller
     {
         $limit = $limit ? $limit : 9;
         $catalog = Catalog::find()->limit($limit)->all();
-        $category = Category::find()->where(['type' => 'main'])->one();
+        $category = Category::find()->where(['type' => 'duz'])->one();
 
         return $this->render('index', [
             'catalog' => $catalog,
@@ -97,16 +97,17 @@ class CategoryController extends Controller
     public function actionKumas($limit = null)
     {
 
-        $limit = $limit ? $limit : 4;
+        $limit = $limit ? $limit : 9;
         $category = Category::find()
-            ->where(['type' => 'main'])
-            ->andWhere(['slug' => 'kumas_cinsi'])
+            ->where(['type' => 'kuman'])
             ->one();
+
         $materials = Materials::find()->limit($limit)->all();
 
         return $this->render('type_kuman', [
             'category' => $category,
             'materials' => $materials,
+            'limit'=>$limit
         ]);
 
     }

@@ -40,7 +40,8 @@ class VideosSearch extends Videos
      */
     public function search($params)
     {
-        $query = Videos::find();
+        $query = Videos::find()
+            ->orderBy(['position' => SORT_ASC]);
 
         // add conditions that should always apply here
 

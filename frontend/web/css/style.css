@@ -517,6 +517,8 @@ footer {
 .advantages_about {
     background: url("/frontend/web/uploads/banners/about_bg.png");
     background-size: cover;
+    padding: 70px 0;
+    background-position: center;
 }
 
 .advantage_item {

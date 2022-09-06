@@ -112,7 +112,8 @@ class ElementController extends Controller
         if ($this->request->isPost && $model->load($this->request->post())) {
 
             if ($model->fat_element_id == $model->id) {
-                return false;
+                Yii::$app->session->addFlash('error','Error the same element');
+                return $this->redirect(['index']);
             }
 
             $model->save();

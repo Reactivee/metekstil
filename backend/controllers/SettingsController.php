@@ -9,6 +9,7 @@ use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * SettingsController implements the CRUD actions for Settings model.
@@ -67,8 +68,28 @@ class SettingsController extends Controller
     {
         $model = new Settings();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $img = UploadedFile::getInstance($model, 'logo');
+
+            if ($img) {
+
+                $folder = Yii::getAlias('@frontend') . '/web/uploads/logo/';
+                if (!file_exists($folder)) {
+                    mkdir($folder, 0777, true);
+                }
+                $generateName = Yii::$app->security->generateRandomString();
+                $path = $folder . $generateName . '.' . $img->extension;
+                $img->saveAs($path);
+                $path = '/frontend/web/uploads/logo/' . $generateName . '.' . $img->extension;
+                $model->logo = $path;
+            }
+
+            if ($model['oldAttributes']['logo'] && !$img) {
+                $model->logo = $model['oldAttributes']['logo'];
+            }
+
+            $model->save();
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [
@@ -87,7 +108,28 @@ class SettingsController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+
+            $img = UploadedFile::getInstance($model, 'logo');
+
+            if ($img) {
+
+                $folder = Yii::getAlias('@frontend') . '/web/uploads/logo/';
+                if (!file_exists($folder)) {
+                    mkdir($folder, 0777, true);
+                }
+                $generateName = Yii::$app->security->generateRandomString();
+                $path = $folder . $generateName . '.' . $img->extension;
+                $img->saveAs($path);
+                $path = '/frontend/web/uploads/logo/' . $generateName . '.' . $img->extension;
+                $model->logo = $path;
+            }
+
+            if ($model['oldAttributes']['logo'] && !$img) {
+                $model->logo = $model['oldAttributes']['logo'];
+            }
+
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

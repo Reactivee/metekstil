@@ -68,7 +68,7 @@ $this->params['breadcrumbs'][] = Yii::t('main', 'gallery');
                         <?
                         foreach ($dataProviderVideos->models as $item) { ?>
                             <div class="col-md-6 col-12 my-2">
-                                <iframe width="100%" height="" src="<?= $item->path ?>"
+                                <iframe width="100%" height="400px" src="<?= $item->path ?>"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen></iframe>
                             </div>

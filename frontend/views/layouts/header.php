@@ -6,9 +6,16 @@ use yii\bootstrap4\NavBar;
 use yii\helpers\Html;
 
 $category = \common\models\Category::find()
-    ->where(['not', ['type' => 'main']])
+    ->where(['type' => ''])
     ->all();
+
 $settings = Settings::find()->one();
+$category_kuman = \common\models\Category::find()
+    ->where(['type' => 'kuman'])
+    ->one();
+$category_duz = \common\models\Category::find()
+    ->where(['type' => 'duz'])
+    ->one();
 ?>
 
 <!--<header>-->
@@ -54,7 +61,7 @@ $settings = Settings::find()->one();
                     <nav class="navbar navbar-expand-md navbar-light justify-content-start justify-content-md-between d-flex  align-items-center">
 
                         <a class="navbar-brand p-0" href="/">
-                            <img src="/uploads/logo/logomain.png" alt="logomain">
+                            <img src="<?= $settings->logo ?>" alt="logomain">
                         </a>
 
                         <div class="collapse d-md-flex  navbar-collapse" id="navbarSupportedContent">
@@ -73,14 +80,17 @@ $settings = Settings::find()->one();
                                        href="#" role="button"
                                        aria-haspopup="true" aria-expanded="false"><?= Yii::t('main', 'catalog') ?></a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item"
-                                           href="/category">Duz Boya</a>
-                                        <a class="dropdown-item"
-                                           href="/category/kumas">Kumas cinsi</a>
+                                        <? if ($category_duz) { ?>
+                                            <a class="dropdown-item"
+                                               href="/category"><?= $category_duz['name_' . Yii::$app->language] ?></a>
+                                        <? } ?>
+                                        
+                                        <? if ($category_kuman) { ?>
+                                            <a class="dropdown-item"
+                                               href="/category/kumas"><?= $category_kuman['name_' . Yii::$app->language] ?></a>
+                                        <? } ?>
                                         <? if ($category) { ?>
-                                            <? foreach ($category as $cat) {
-
-                                                ?>
+                                            <? foreach ($category as $cat) { ?>
                                                 <a class="dropdown-item"
                                                    href="/category/product/<?= $cat->slug ?>"><?= $cat['name_' . Yii::$app->language] ?></a>
                                             <? } ?>
