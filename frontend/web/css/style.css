@@ -355,7 +355,9 @@ html {
     padding: 10px 40px;
     margin-right: 30px;
 }
-
+.top__content_buttons{
+    margin-top: 40px;
+}
 .about_mini_card {
     position: absolute;
     top: -47px;

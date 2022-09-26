@@ -124,7 +124,12 @@ return [
             'enableLanguageDetection' => false,
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'enableStrictParsing' => false,
             'rules' => [
+
+//                ['class' => 'yii\rest\UrlRule', 'controller' => 'site'],
+//                ['class' => 'yii\rest\UrlRule', 'controller' => 'api'],
+
                 'locations' => 'site/locations',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>/<slug:\w+>' => '<controller>/<action>',

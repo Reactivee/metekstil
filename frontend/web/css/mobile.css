@@ -52,6 +52,14 @@ hr {
 
     }
 
+    .top__content_buttons {
+        padding: 30px;
+    }
+
+    .top__content_text {
+    padding: 45px;
+    }
+
     .slider_btn_rigth_top .swiper-pagination {
         text-align: center;
         bottom: -6px

@@ -61,10 +61,6 @@ class Users extends \yii\db\ActiveRecord
             'total_orders_price' => 'Total Orders Price',
         ];
     }
-    public function getCard()
-    {
-        return $this->hasOne(Cards::className(), ['user_id' => 'id']);
-    }
 
 
 }
